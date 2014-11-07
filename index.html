@@ -22,70 +22,91 @@
   </head>
   
   <body>
-    <header>
-      <h1>
-        <span>Dear President Obama,</span> 
-        Take a stand for Net Neutrality
-      </h1>
+    <div class="container">
+      <header>
+        <h1>
+          <span>Dear President Obama,</span> 
+          Take a stand for Net Neutrality
+        </h1>
+        
+        <div id="signatures">
+          <div id="signature-count"><span style="width: 60%;"></span></div>
+          <p><em>110,000</em> out of 200,000 signatures</p>
+        </div>
+      </header>
+          
+      <main>
+        <div class="padding">
+          <p class="featured">
+            <strong>We, the users of the Internet,</strong> petition you to publicly state your full, unequivocal support for reclassification of broadband as a telecommunications service under Title II of the Communications Act, and urge the FCC to reject the “sender-side” proposal it is considering instead.
+          </p>
+          <p>Petition you to publicly state your full, unequivocal support for reclassification of the Internet as a telecommunications service under Title II of the Communications Act.</p>
+          <p>Over 3 million of us commented in the FCC’s rulemaking process. Now we need you to back us up.</p>
+          <p>We realize the FCC is an independent agency. But the White House’s voice is a strong one. Your support for full Title II reclassification will undoubtedly deeply influence the debate.</p>
+          <p>Americans rely on the Internet to work, communicate with loved ones, learn, and innovate for our future. And that’s why we’re calling on you to help echo our demands to the FCC: reclassify the Internet fully in order to protect both users and companies from any and all forms of discriminatory practices by Internet providers. If full reclassification comes with excess rules, we call on the Commission to work with the forbearance process in order to craft a set of net neutrality regulations that make sense for the Internet.</p>
+        </div>
+        <a id="expand" href="#">Read full text &rarr;</a>
+      </main>
       
-      <div id="signatures">
-        <div id="signature-count"><span style="width: 60%;"></span></div>
-        <p><em>110,000</em> out of 200,000 signatures</p>
+      <aside>
+        <div class="padding">
+          <h2>Add your name</h2>
+          
+          <form method="post" action="">
+            <p>
+              <label for="first-name">First name</label>
+              <input type="text" name="first-name" id="first-name" value="" />
+            </p>
+            
+            <p>
+              <label for="last-name">Last name</label>
+              <input type="text" name="last-name" id="last-name" value="" />
+            </p>
+            
+            <p>
+              <label for="your-email">Your email</label>
+              <input type="email" name="your-email" id="your-email" value="" />
+            </p>
+            
+            <p class="checkbox">
+              <input type="checkbox" name="sign-up" id="sign-up" />
+              <label for="sign-up">Sign up to receive emails from the Electronic Frontier Foundation <a href="#">(privacy)</a>.</label>
+            </p>
+            
+            <br class="clear" />
+            <input type="submit" id="submit" value="Sign the petition" />
+          </form>
+          
+          <p class="disclaimer">Your signature will be electronically transmitted to the White House via their API <a href="#">(privacy policy)</a>.
+          
+        </div>
+      </aside>
+      
+      
+      <footer>
+        <img class="logos" src="" alt="" />
+      </footer>
+    </div>
+    
+    <div id="modal">
+      <div class="container">
+        <div class="center">
+        
+          <figure>
+            <span class="loading">
+                <span class="spinner">
+                    <span class="mask">
+                        <span class="maskedCircle"></span>
+                    </span>
+                </span>
+            </span>
+          </figure>
+          <h2>Please check your email!</h2>
+          <p>Look for a message from whitehouse.gov, and <strong>click the link to verify your email address</strong>.</p> 
+          <p>We'll update this page once you're all done.</p>
+        </div>
       </div>
-    </header>
-        
-    <main>
-      <div class="padding">
-        <p class="featured">
-          <strong>We, the users of the Internet,</strong> petition you to publicly state your full, unequivocal support for reclassification of broadband as a telecommunications service under Title II of the Communications Act, and urge the FCC to reject the “sender-side” proposal it is considering instead.
-        </p>
-        <p>Petition you to publicly state your full, unequivocal support for reclassification of the Internet as a telecommunications service under Title II of the Communications Act.</p>
-        <p>Over 3 million of us commented in the FCC’s rulemaking process. Now we need you to back us up.</p>
-        <p>We realize the FCC is an independent agency. But the White House’s voice is a strong one. Your support for full Title II reclassification will undoubtedly deeply influence the debate.</p>
-        <p>Americans rely on the Internet to work, communicate with loved ones, learn, and innovate for our future. And that’s why we’re calling on you to help echo our demands to the FCC: reclassify the Internet fully in order to protect both users and companies from any and all forms of discriminatory practices by Internet providers. If full reclassification comes with excess rules, we call on the Commission to work with the forbearance process in order to craft a set of net neutrality regulations that make sense for the Internet.</p>
-      </div>
-      <a id="expand" href="#">Read full text &rarr;</a>
-    </main>
-    
-    <aside>
-      <div class="padding">
-        <h2>Add your name</h2>
-        
-        <form method="post" action="">
-          <p>
-            <label for="first-name">First name</label>
-            <input type="text" name="first-name" id="first-name" value="" />
-          </p>
-          
-          <p>
-            <label for="last-name">Last name</label>
-            <input type="text" name="last-name" id="last-name" value="" />
-          </p>
-          
-          <p>
-            <label for="your-email">Your email</label>
-            <input type="email" name="your-email" id="your-email" value="" />
-          </p>
-          
-          <p class="checkbox">
-            <input type="checkbox" name="sign-up" id="sign-up" />
-            <label for="sign-up">Sign up to receive emails from the Electronic Frontier Foundation <a href="#">(privacy)</a>.</label>
-          </p>
-          
-          <br class="clear" />
-          <input type="submit" id="submit" value="Sign the petition" />
-        </form>
-        
-        <p class="disclaimer">Your signature will be electronically transmitted to the White House via their API <a href="#">(privacy policy)</a>.
-        
-      </div>
-    </aside>
-    
-    
-    <footer>
-      <img class="logos" src="" alt="" />
-    </footer>
-    
+    </div>
     
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -99,6 +120,11 @@
         });
         $('#expand').click(function() {
           $('main').addClass('expanded');
+        });
+        
+        $('input#submit').click(function() {
+          $('#modal').fadeIn();
+          return false;
         });
       });
     </script>

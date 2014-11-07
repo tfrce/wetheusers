@@ -16,16 +16,20 @@ br.clear {
 html {
   background: $background;
   @include background-image( linear-gradient(to right, #1f4869 0%, #1e2a3a 100%) );
-  color: #333;
+  color: #FFF;
+  font-family: $body-text;
+  
 }
 
 body {
+    background: url(img/bg-obama.png) no-repeat left top;
+}
+
+div.container {
   width: 90%;
   padding: 0 5%;
   max-width: $max-width;
-  font-family: $body-text;
   margin: 0 auto;
-  background: url(img/bg-obama.png) no-repeat left top;
 }
 
 a {
@@ -111,6 +115,7 @@ main {
   z-index: 2;
   background: #ebeef0;
   overflow: hidden;
+  color: #333;
   border-radius: 4px;
   @include padding-leader(1.5);
   @include padding-trailer(.5);
@@ -246,6 +251,75 @@ form {
   }
 }
 
+/* Loading */
+
+#modal {
+  background: $background;
+  background: rgba(31, 54, 77, .95);
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 100;
+  div.container {
+    width: 100%;
+    height: 100%;
+    display: table;
+    }
+  
+  div.center {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 2em;
+  }
+  p {
+    max-width: 380px;
+    margin: 0 auto;
+    color: lighten($background,55%);
+    @include margin-trailer(0.5);
+  }
+  figure {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    @include margin-trailer(1);
+    span {
+      display: block;
+    }
+  }
+  .loading {
+      width: 50px;
+      height: 50px;
+      margin: -14px 0 0 -14px;
+  }
+   
+  .loading .maskedCircle {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      border: 5px solid $highlight;
+  }
+   
+  .loading .mask {
+      width: 25px;
+      height: 25px;
+      overflow: hidden;
+  }
+   
+  .loading .spinner {
+      position: absolute;
+      left: 1px;
+      top: 1px;
+      width: 50px;
+      height: 50px;
+  }
+}
+
 /* Footer */
 
 footer {
@@ -278,6 +352,19 @@ h1, #signatures, main, aside {
 }
 main, aside {
   @include animation-delay(0.3s);
+}
+
+@include keyframes(spin) {
+  0% {
+    @include transform(rotate(0));
+  }
+  100% {
+    @include transform(rotate(360deg));
+  }
+}
+
+div#modal figure .spinner {
+  @include animation(spin 1s 0s linear infinite);
 }
 
 @include keyframes(pulse) {
@@ -322,6 +409,7 @@ main, aside {
   }
   aside {
     @include column(12);
+    @include adjust-font-size-to(22px);
   }
   #expand {
     display: block;
