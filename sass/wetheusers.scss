@@ -1,0 +1,284 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "includes", "variables";
+
+html {
+  background: $background;
+  @include background-image( linear-gradient(to right, #1f4869 0%, #1e2a3a 100%) );
+  color: #333;
+}
+
+body {
+  width: 90%;
+  padding: 0 5%;
+  max-width: $max-width;
+  font-family: $body-text;
+  margin: 0 auto;
+  background: url(img/bg-obama.png) no-repeat left top;
+}
+
+a {
+  color: $highlight;
+  text-decoration: none;
+  @include box-shadow(inset 0 -3px 0 rgba(42, 119, 79, 0.5));
+  &:hover {
+    @include box-shadow(inset 0 -3px 0 rgba(42, 119, 79, 0.5));
+  }
+}
+
+p {
+  margin-top: 0;
+  @include margin-trailer(0.75);
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: $heading;
+  margin-top: 0;
+  font-weight: normal;
+}
+
+/* Heading */
+
+header {
+  text-align: center;
+  @include padding-leader(2);
+  @include padding-trailer(1);
+  color: #FFF;
+}
+
+#signatures {
+  #signature-count {
+    border-radius: 3em;
+    background: darken($background, 10%);
+    height: 0.8em;
+    margin: 0 auto;
+    width: 90%;
+    padding: 0.2em;
+    max-width: 480px;
+    border: 1px solid lighten($background, 10%);
+    @include margin-trailer(0.2);
+    span {
+      display: block;
+      background: $highlight;
+      border-radius: 3em;
+      height: 100%;
+      @include animation(pulse 1.5s 0s ease-in-out infinite alternate);
+    }
+  }
+  p {
+    color: lighten($background, 50%);
+    @include adjust-font-size-to(16px);
+    em {
+      color: lighten($background, 70%);
+      @include adjust-font-size-to(22px);
+      padding-right: 0.1em;
+    }
+  }
+}
+
+h1 {
+  font-family: $heading;
+  font-weight: normal;
+  @include margin-trailer(0.2);
+  @include adjust-font-size-to(64px);
+  line-height: 1em;
+  span {
+    @include adjust-font-size-to(14px);
+    color: lighten($background, 50%);
+    line-height: 1.1em;
+    display: block;
+  }
+}
+
+/* Body */
+
+main {
+  font-family: $petition-text;
+  @include column(8);
+  @include box-shadow(0 5px 10px rgba(0,0,0,0.5));
+  position: relative;
+  z-index: 2;
+  background: #ebeef0;
+  overflow: hidden;
+  border-radius: 4px;
+  @include padding-leader(1.5);
+  @include padding-trailer(.5);
+  div.padding {
+    padding: 0 3em;
+    padding-bottom: 0;
+  }
+}
+
+#expand {
+  display: block;
+  z-index: 4;
+  padding: 1em 0;
+  padding-top: 15em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #FFF;
+  text-shadow: 0 0 5px #FFF;
+  background: rgba(255,255,255,0.8);
+  @include background(linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%));
+  text-align: center;
+  display: none;
+}
+
+p.featured {
+  @include adjust-font-size-to(24px);
+}
+
+/* Sidebar */
+
+aside {
+  @include column(4);
+  background: #20222c;
+  color: lighten(#20222c, 55%);
+  h2 {
+    color: #FFF;
+  }
+  div.padding {
+    padding: 2em;
+  }
+}
+
+form {
+  p {
+    margin-bottom: 0;
+  }
+  label {
+    display: block;
+    position: relative;
+    @include transform(translate3d(0, 1.5em, 0));
+  }
+  input:focus + label {
+    @include transform(translate3d(0, 0, 0) scale(0.5));
+  }
+  input {
+    clear: both;
+    background: transparent;
+    color: #FFF;
+    border: none;
+    border-bottom: 3px solid lighten(#20222c, 10%);
+    @include padding-trailer(0.25);
+  }
+  input[type=submit] {
+    background: $highlight;
+    border: none;
+    color: #FFF;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 0.5em 0;
+    display: block;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px #000;
+    &:hover {
+      background: lighten($highlight,5%);
+      box-shadow: 0 4px 10px #000;
+    }
+    &:active {
+      background: darken($highlight,5%);
+      box-shadow: 0 1px 2.5px #000;
+    }
+  }
+  p.checkbox {
+    @include padding-leader(1);
+    @include padding-trailer(1);
+    input {
+      @include column(1);
+    }
+    label {
+      @include adjust-font-size-to(13px);
+      line-height: 1.1em;
+      @include column(10.5);
+      @include push(0.5);
+      @include transform(none);
+      padding: 0;
+    }
+  }
+}
+
+/* Footer */
+
+footer {
+  @include padding-leader(1);
+  @include padding-trailer(2);
+  min-height: 1px;
+  clear: both;
+  img {
+    display: block;
+  }
+}
+
+@include keyframes(flyUp) {
+  0% {
+    opacity: 0;
+    @include transform(translate3d(0, 150px, 0));
+  }
+  100% {
+    opacity: 1;
+    @include transform(translate3d(0, 0, 0));
+  }
+}
+
+h1, #signatures, main, aside {
+  @include animation(flyUp 1s 0.1s cubic-bezier(0.580, 0.000, 0.000, 1.000));
+  @include animation-fill-mode(both);
+}
+#signatures {
+  @include animation-delay(0.2s);
+}
+main, aside {
+  @include animation-delay(0.3s);
+}
+
+@include keyframes(pulse) {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    padding: 0;
+    background-size: 80% auto;
+  }
+  header {
+    @include padding-leader(2);
+    @include padding-trailer(1);
+  }
+  h1 {
+    @include adjust-font-size-to(36px);
+    line-height: 1.1em;
+    padding: 0;
+  }
+  body {
+    @include adjust-font-size-to(14px);
+  }
+  main {
+    height: 250px;
+    @include column(12);
+    padding: 0;
+    div.padding {
+      padding: 1.5em;
+    }
+    p.featured {
+      font-size: inherit;
+    }
+  }
+  aside {
+    @include column(12);
+  }
+  #expand {
+    display: block;
+  }
+}

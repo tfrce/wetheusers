@@ -1,0 +1,149 @@
+@import "compass", "bourbon/bourbon", "normalise";
+
+
+
+// Keyframes
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+	@content;
+	}
+	@-moz-keyframes #{$name} {
+	@content;
+	}
+	@-ms-keyframes #{$name} {
+	@content;
+	}
+	@keyframes #{$name} {
+	@content;
+	}
+}
+
+
+// CSS Arrows
+ @mixin arrow($width: 20px, $height: 20px, $direction: up, $color: red) { 
+	  width: 0;
+	  height: 0;
+ 
+	  // Right
+	  @if $direction == right {
+	    border-top: $height/2 solid transparent;
+	    border-bottom: $height/2 solid transparent;
+	    border-left: $width solid $color;
+		}
+	  // Left
+	  @if $direction == left {
+	    border-top: $height/2 solid transparent;
+	    border-bottom: $height/2 solid transparent;
+	    border-right: $width solid $color;
+		}
+	  // Up
+	  @if $direction == up {
+	    border-left: $width/2 solid transparent;
+	    border-right: $width/2 solid transparent;
+	    border-bottom: $height solid $color;
+		}
+	  // Down
+	  @if $direction == down {
+	    border-left: $width/2 solid transparent;
+	    border-right: $width/2 solid transparent;
+	    border-top: $height solid $color;
+	    }
+    }
+    
+/////////////////
+// Semantic.gs // for SCSS: http://sass-lang.com/
+/////////////////
+
+// Defaults which you can freely override
+$column-width: 80px;
+$gutter-width: 0px;
+$columns: 12;
+
+// Utility function — you should never need to modify this
+@function gridsystem-width($columns:$columns) {
+	@return ($column-width * $columns) + ($gutter-width * $columns);
+}
+
+// Set $total-width to 100% for a fluid layout
+$total-width: 100%;
+
+// Uncomment these two lines and the star-hack width/margin lines below to enable sub-pixel fix for IE6 & 7. See http://tylertate.com/blog/2012/01/05/subpixel-rounding.html
+// $min-width: 999999;
+// $correction: 0.5 / $min-width * 100;
+
+// The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/
+@mixin clearfix() {
+	*zoom:1;
+
+	&:before,
+	&:after {
+	    content:"";
+	    display:table;
+	}
+	&:after {
+	    clear:both;
+	}
+}
+
+
+//////////
+// GRID //
+//////////
+
+body {
+	width: 100%;
+	@include clearfix();
+}
+
+@mixin row($columns:$columns) {
+	display: block;
+	width: $total-width*(($gutter-width + gridsystem-width($columns))/gridsystem-width($columns));
+	margin: 0 $total-width*((($gutter-width*.5)/gridsystem-width($columns))*-1);
+	// *width: $total-width*(($gutter-width + gridsystem-width($columns))/gridsystem-width($columns))-$correction;
+	// *margin: 0 $total-width*((($gutter-width*.5)/gridsystem-width($columns))*-1)-$correction;
+	@include clearfix();
+}
+@mixin column($x,$columns:$columns) {
+	display: inline;
+	float: left;
+	width: $total-width*(((($gutter-width+$column-width)*$x)-$gutter-width) / gridsystem-width($columns));
+	margin: 0 $total-width*(($gutter-width*.5)/gridsystem-width($columns));
+	// *width: $total-width*(((($gutter-width+$column-width)*$x)-$gutter-width) / gridsystem-width($columns))-$correction;
+	// *margin: 0 $total-width*(($gutter-width*.5)/gridsystem-width($columns))-$correction;
+}
+@mixin push($offset:1) {
+	margin-left: $total-width*((($gutter-width+$column-width)*$offset) / gridsystem-width($columns)) + $total-width*(($gutter-width*.5)/gridsystem-width($columns));
+}
+@mixin pull($offset:1) {
+	margin-right: $total-width*((($gutter-width+$column-width)*$offset) / gridsystem-width($columns)) + $total-width*(($gutter-width*.5)/gridsystem-width($columns));
+}
+
+// Baseline grid
+$body-width: 960px;
+$baseline: 6px;
+
+@mixin baseline-grid-columns {
+	$column-color: rgba(200,0,0,.2);
+	$baseline-color: rgba(56,255,255,.8);
+	// These are all automatically calculated
+	$gutters: ($columns - 1);
+	background-image: -webkit-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width*.5),
+	-webkit-linear-gradient(top, rgba(0,0,0,0) 95%, $baseline-color 100%);
+	background-image: -moz-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width*.5),
+	-moz-linear-gradient(top, rgba(0,0,0,0) 95%, $baseline-color 100%);
+	background-image: -o-linear-gradient(0deg, $column-color $column-width, transparent $gutter-width*.5),
+	-o-linear-gradient(top, rgba(0,0,0,0) 95%, $baseline-color 100%);
+	background-size: ($column-width + $gutter-width) 100%, 100% $baseline;
+	background-position: 10px 0px; // Use to offset and center your grid
+}
+@mixin baseline-grid {
+	$baseline-color: rgba(56,255,255,1);
+	// These are all automatically calculated
+	background-image: -webkit-linear-gradient(top, rgba(0,0,0,0) 90%, $baseline-color 100%);
+	background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 85%, $baseline-color 100%);
+	background-image: -o-linear-gradient(top, rgba(0,0,0,0) 90%, $baseline-color 100%);
+	background-size: 100% $baseline;
+	background-position: 10px 0px; // Use to offset and center your grid
+}
+
+// GRID

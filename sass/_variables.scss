@@ -1,0 +1,15 @@
+$cubicBezier: cubic-bezier(0.590, 0.005, 0.000, 1.000);
+
+$background: #1f364d;
+$highlight: #209f95;
+
+$body-text: "source-sans-pro", "Source Sans Pro", Helvetica, Arial, sans-serif;
+$petition-text: "droid-serif", "Droid Serif", Cambria, Georgia, Times, serif;
+$heading: "bebas-neue", "Bebas Neue", "Franklin Gothic Condensed", "Helvetica Neue Condensed", sans-serif;
+
+$base-font-size: 18px;
+$base-line-height: 30px;
+$relative-font-sizing: true;
+@include establish-baseline;
+
+$max-width: 900px;
