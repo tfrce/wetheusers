@@ -72,7 +72,9 @@ $(document).ready(function () {
   
 
   // On form submissions
-  $('.petition-form').on('submit', function () {
+  $('.petition-form').on('submit', function (ev) {
+    var formData = $(ev.currentTarget).serializeObject();
+    console.log(formData);
     $('#modal').fadeIn();
     return false;
   })
@@ -116,5 +118,8 @@ var setupReferralInput = function () {
     referalOrg = referalMap[referalKeys[randomOrgIndex]];
     slug = referalKeys[randomOrgIndex];
   }
-
+  console.log(referalMap[slug]);
+  $('.org-name').text(referalMap[slug].name);
+  $('.org-privacy-link').text(referalMap[slug].policy);
+  $('.org-slug').val(slug);
 }
