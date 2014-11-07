@@ -1,7 +1,10 @@
 
 $(document).ready(function () {
 
+  // ------------ Setup -------------- //
 
+  // Enable HTML5 form validation for all browsers and platforms
+  webshim.polyfill('forms');
 
   // ------------ Events ------------- //
 
