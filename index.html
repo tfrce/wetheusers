@@ -86,5 +86,21 @@
       <img class="logos" src="" alt="" />
     </footer>
     
+    
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('form input').blur(function () {
+          if( $(this).val() ) {
+              $(this).addClass('filled');
+            } else {
+              $(this).removeClass();
+            }
+        });
+        $('#expand').click(function() {
+          $('main').addClass('expanded');
+        });
+      });
+    </script>
   </body>
 </html>

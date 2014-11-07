@@ -114,6 +114,7 @@ main {
   border-radius: 4px;
   @include padding-leader(1.5);
   @include padding-trailer(.5);
+  @include transition(all 0.5s $cubicBezier);
   div.padding {
     padding: 0 3em;
     padding-bottom: 0;
@@ -124,16 +125,16 @@ main {
   display: block;
   z-index: 4;
   padding: 1em 0;
-  padding-top: 15em;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
+  @include adjust-font-size-to(20px);
   background: #FFF;
+  background: rgba(255, 255, 255, .9);
   text-shadow: 0 0 5px #FFF;
-  background: rgba(255,255,255,0.8);
-  @include background(linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%));
   text-align: center;
+  box-shadow: 0px -3px 3px rgba(0,0,0,0.1);
   display: none;
 }
 
@@ -147,6 +148,13 @@ aside {
   @include column(4);
   background: #20222c;
   color: lighten(#20222c, 55%);
+  border-top-right-radius: 5px;
+  border: 3px solid $highlight;
+  border-left: none;
+  margin-right: -3px;
+  border: none;
+  border-radius: 0px;
+  border-bottom-right-radius: 5px;
   h2 {
     color: #FFF;
   }
@@ -196,7 +204,7 @@ form {
   input[value=""] {
       @include transform(translate3d(0, -1.5em, 0));
   }
-  input[value=""]:focus {
+  input.filled, input:focus {
     @include transform(translate3d(0, 0, 0));
   }
   input[type=submit] {
@@ -220,6 +228,7 @@ form {
     }
   }
   p.checkbox {
+    @include padding-leader(.25);
     input {
       @include column(1);
       @include transform(none);
@@ -298,14 +307,17 @@ main, aside {
     @include adjust-font-size-to(14px);
   }
   main {
-    height: 250px;
+    max-height: 250px;
     @include column(12);
     padding: 0;
     div.padding {
       padding: 1.5em;
     }
-    p.featured {
-      font-size: inherit;
+    p.featured, p {
+      @include adjust-font-size-to(18px);
+    }
+    &.expanded {
+      max-height: 2000px;
     }
   }
   aside {
@@ -313,5 +325,8 @@ main, aside {
   }
   #expand {
     display: block;
+  }
+  .expanded #expand {
+    display: none;
   }
 }
