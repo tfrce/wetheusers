@@ -120,6 +120,6 @@ var setupReferralInput = function () {
   }
   console.log(referalMap[slug]);
   $('.org-name').text(referalMap[slug].name);
-  $('.org-privacy-link').text(referalMap[slug].policy);
+  $('.org-privacy-link').attr('href', referalMap[slug].policy);
   $('.org-slug').val(slug);
 }
