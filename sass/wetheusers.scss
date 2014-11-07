@@ -120,7 +120,7 @@ main {
   @include padding-leader(1.5);
   @include padding-trailer(.5);
   @include transition(all 0.5s $cubicBezier);
-  div.padding {
+  .padding {
     padding: 0 3em;
     padding-bottom: 0;
   }
@@ -163,7 +163,7 @@ aside {
   h2 {
     color: #FFF;
   }
-  div.padding {
+  .padding {
     padding: 2em;
   }
   p.disclaimer {
@@ -376,6 +376,19 @@ div#modal figure .spinner {
   }
 }
 
+@media screen and (max-width: 830px) {
+  main {
+    @include column(7);
+    @include adjust-font-size-to(16px);
+    .padding {
+      padding: 0 2em;
+    }
+  }
+  aside {
+    @include column(5);
+  }
+}
+
 @media screen and (max-width: 640px) {
   body {
     padding: 0;
@@ -397,7 +410,7 @@ div#modal figure .spinner {
     max-height: 250px;
     @include column(12);
     padding: 0;
-    div.padding {
+    .padding {
       padding: 1.5em;
     }
     p.featured, p {
