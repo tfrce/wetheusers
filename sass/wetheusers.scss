@@ -4,6 +4,14 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 @import "includes", "variables";
+br.clear {
+  clear: both;
+  overflow: hidden;
+  display: block;
+  height: 1px;
+  margin-bottom: -1px;
+  width: 100%;
+}
 
 html {
   background: $background;
@@ -145,19 +153,32 @@ aside {
   div.padding {
     padding: 2em;
   }
+  p.disclaimer {
+    @include adjust-font-size-to(13px);
+    line-height: 1.5em;
+    margin: 0;
+    border-top: 1px solid lighten(#20222c, 10%);
+    @include padding-leader(1);
+    @include margin-leader(1);
+    color: lighten(#20222c, 40%);
+    text-align: center;
+  }
 }
 
 form {
+  @include padding-leader(0);
   p {
     margin-bottom: 0;
   }
   label {
     display: block;
     position: relative;
-    @include transform(translate3d(0, 1.5em, 0));
   }
   input:focus + label {
-    @include transform(translate3d(0, 0, 0) scale(0.5));
+    @include transform(scale(0.5));
+  }
+  input:focus {
+    border-bottom: 3px solid $highlight;
   }
   input {
     clear: both;
@@ -166,14 +187,25 @@ form {
     border: none;
     border-bottom: 3px solid lighten(#20222c, 10%);
     @include padding-trailer(0.25);
+    width: 100%;
+    @include transition(all 0.5s $cubicBezier);
+    @include margin-leader(0.25);
+    @include margin-trailer(0.25);
+    
+  }
+  input[value=""] {
+      @include transform(translate3d(0, -1.5em, 0));
+  }
+  input[value=""]:focus {
+    @include transform(translate3d(0, 0, 0));
   }
   input[type=submit] {
     background: $highlight;
     border: none;
+    @include transform(none);
     color: #FFF;
     font-weight: bold;
     text-transform: uppercase;
-    width: 100%;
     padding: 0.5em 0;
     display: block;
     border-radius: 2px;
@@ -188,18 +220,19 @@ form {
     }
   }
   p.checkbox {
-    @include padding-leader(1);
-    @include padding-trailer(1);
     input {
       @include column(1);
+      @include transform(none);
     }
     label {
+      margin: 0;
       @include adjust-font-size-to(13px);
       line-height: 1.1em;
       @include column(10.5);
       @include push(0.5);
-      @include transform(none);
       padding: 0;
+      @include padding-trailer(1);
+      
     }
   }
 }
