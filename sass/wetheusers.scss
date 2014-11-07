@@ -16,16 +16,20 @@ br.clear {
 html {
   background: $background;
   @include background-image( linear-gradient(to right, #1f4869 0%, #1e2a3a 100%) );
-  color: #333;
+  color: #FFF;
+  font-family: $body-text;
+  
 }
 
 body {
+    background: url(img/bg-obama.png) no-repeat left top;
+}
+
+div.container {
   width: 90%;
   padding: 0 5%;
   max-width: $max-width;
-  font-family: $body-text;
   margin: 0 auto;
-  background: url(img/bg-obama.png) no-repeat left top;
 }
 
 a {
@@ -111,10 +115,12 @@ main {
   z-index: 2;
   background: #ebeef0;
   overflow: hidden;
+  color: #333;
   border-radius: 4px;
   @include padding-leader(1.5);
   @include padding-trailer(.5);
-  div.padding {
+  @include transition(all 0.5s $cubicBezier);
+  .padding {
     padding: 0 3em;
     padding-bottom: 0;
   }
@@ -124,16 +130,16 @@ main {
   display: block;
   z-index: 4;
   padding: 1em 0;
-  padding-top: 15em;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
+  @include adjust-font-size-to(20px);
   background: #FFF;
+  background: rgba(255, 255, 255, .9);
   text-shadow: 0 0 5px #FFF;
-  background: rgba(255,255,255,0.8);
-  @include background(linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%));
   text-align: center;
+  box-shadow: 0px -3px 3px rgba(0,0,0,0.1);
   display: none;
 }
 
@@ -147,10 +153,17 @@ aside {
   @include column(4);
   background: #20222c;
   color: lighten(#20222c, 55%);
+  border-top-right-radius: 5px;
+  border: 3px solid $highlight;
+  border-left: none;
+  margin-right: -3px;
+  border: none;
+  border-radius: 0px;
+  border-bottom-right-radius: 5px;
   h2 {
     color: #FFF;
   }
-  div.padding {
+  .padding {
     padding: 2em;
   }
   p.disclaimer {
@@ -196,7 +209,7 @@ form {
   input[value=""] {
       @include transform(translate3d(0, -1.5em, 0));
   }
-  input[value=""]:focus {
+  input.filled, input:focus {
     @include transform(translate3d(0, 0, 0));
   }
   input[type=submit] {
@@ -220,6 +233,7 @@ form {
     }
   }
   p.checkbox {
+    @include padding-leader(.25);
     input {
       @include column(1);
       @include transform(none);
@@ -234,6 +248,75 @@ form {
       @include padding-trailer(1);
       
     }
+  }
+}
+
+/* Loading */
+
+#modal {
+  background: $background;
+  background: rgba(31, 54, 77, .95);
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 100;
+  div.container {
+    width: 100%;
+    height: 100%;
+    display: table;
+    }
+  
+  div.center {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 2em;
+  }
+  p {
+    max-width: 380px;
+    margin: 0 auto;
+    color: lighten($background,55%);
+    @include margin-trailer(0.5);
+  }
+  figure {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    @include margin-trailer(1);
+    span {
+      display: block;
+    }
+  }
+  .loading {
+      width: 50px;
+      height: 50px;
+      margin: -14px 0 0 -14px;
+  }
+   
+  .loading .maskedCircle {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      border: 5px solid $highlight;
+  }
+   
+  .loading .mask {
+      width: 25px;
+      height: 25px;
+      overflow: hidden;
+  }
+   
+  .loading .spinner {
+      position: absolute;
+      left: 1px;
+      top: 1px;
+      width: 50px;
+      height: 50px;
   }
 }
 
@@ -271,12 +354,38 @@ main, aside {
   @include animation-delay(0.3s);
 }
 
+@include keyframes(spin) {
+  0% {
+    @include transform(rotate(0));
+  }
+  100% {
+    @include transform(rotate(360deg));
+  }
+}
+
+div#modal figure .spinner {
+  @include animation(spin 1s 0s linear infinite);
+}
+
 @include keyframes(pulse) {
   0% {
     opacity: 1;
   }
   100% {
     opacity: 0.7;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  main {
+    @include column(7);
+    @include adjust-font-size-to(16px);
+    .padding {
+      padding: 0 2em;
+    }
+  }
+  aside {
+    @include column(5);
   }
 }
 
@@ -298,20 +407,27 @@ main, aside {
     @include adjust-font-size-to(14px);
   }
   main {
-    height: 250px;
+    max-height: 250px;
     @include column(12);
     padding: 0;
-    div.padding {
+    .padding {
       padding: 1.5em;
     }
-    p.featured {
-      font-size: inherit;
+    p.featured, p {
+      @include adjust-font-size-to(18px);
+    }
+    &.expanded {
+      max-height: 2000px;
     }
   }
   aside {
     @include column(12);
+    @include adjust-font-size-to(22px);
   }
   #expand {
     display: block;
+  }
+  .expanded #expand {
+    display: none;
   }
 }
