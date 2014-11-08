@@ -75,8 +75,26 @@ $(document).ready(function () {
   // On form submissions
   $('.petition-form').on('submit', function (ev) {
     var formData = $(ev.currentTarget).serializeObject();
-    console.log(formData);
+    formData.subscribeToEmails = true;
     $('#modal').fadeIn();
+    $.ajax({
+      url: 'https://standupforthenet.herokuapp.com/api/1/signatures',
+      type: 'POST',
+      crossDomain: true,
+      data: JSON.stringify(formData),
+      dataType: 'json',
+      success: function (){
+        console.log(arguments);
+      }
+    })
+    /*
+      {
+        "email": "thomasalwyndavis@gmail.cmo",
+        "firstName": "John",
+        "lastName": "Doe",
+        "subscribeToEmails": true
+      }
+    */
     return false;
   })
 
