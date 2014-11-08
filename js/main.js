@@ -57,7 +57,7 @@ $(document).ready(function () {
 
 
   // Input animation
-  $('form input.text').blur(function () {
+  $('form input[type="text"]').blur(function () {
     if( $(this).val() ) {
         $(this).addClass('filled');
       } else {
