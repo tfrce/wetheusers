@@ -46,7 +46,8 @@ $(document).ready(function () {
   // Enable HTML5 form validation for all browsers and platforms
   webshim.polyfill('forms');
 
-  setupReferralInput();
+  // Enable orgs a random chance at getting mailing list signups
+  setupOrgRotation();
 
 
 
@@ -81,7 +82,7 @@ $(document).ready(function () {
 
 });
 
-var setupReferralInput = function () {
+var setupOrgRotation = function () {
   var referalMap = {
     'fftf': {
         name: 'Fight for the Future',
