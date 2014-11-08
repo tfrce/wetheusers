@@ -1,3 +1,8 @@
+// -------------- Config ------------ //
+// --------------------------------- //
+
+var API_SERVER = 'https://standupforthenet.herokuapp.com';
+var POLL_VALIDATION_TIME = 5000; // Polls to check if user validated in ms
 
 // -------------- Utils ------------ //
 // --------------------------------- //
@@ -57,7 +62,7 @@ $(document).ready(function () {
 
 
   // Input animation
-  $('form input[type="text"]').blur(function () {
+  $('form input[type="text"], form input[type="email"]').blur(function () {
     if( $(this).val() ) {
         $(this).addClass('filled');
       } else {
@@ -78,7 +83,7 @@ $(document).ready(function () {
     formData.subscribeToEmails = true;
     $('#modal').fadeIn();
     $.ajax({
-      url: 'https://standupforthenet.herokuapp.com/api/1/signatures',
+      url: API_SERVER + '/api/1/signatures',
       type: 'POST',
       crossDomain: true,
       data: JSON.stringify(formData),
@@ -86,7 +91,18 @@ $(document).ready(function () {
       success: function (){
         console.log(arguments);
       }
-    })
+    });
+
+    var validated = false;
+    var checkValidation = function () {
+      console.log('Checking Validation', validated);
+      if(Math.ceil(Math.random()*3) % 2 === 0) {
+        console.log('Complete');
+      } else {
+        setTimeout(checkValidation, POLL_VALIDATION_TIME);
+      }
+    }
+    setTimeout(checkValidation, POLL_VALIDATION_TIME);
     /*
       {
         "email": "thomasalwyndavis@gmail.cmo",
@@ -99,7 +115,6 @@ $(document).ready(function () {
   })
 
 });
-
 var setupOrgRotation = function () {
   var referalMap = {
     'fftf': {
