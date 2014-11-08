@@ -187,11 +187,16 @@ form {
     display: block;
     position: relative;
   }
-  input:focus + label {
+  input[type="email"]:focus + label,
+  input[type="text"]:focus + label {
     @include transform(scale(0.5));
   }
-  input:focus {
+  input[type="email"]:focus,
+  input[type="text"]:focus {
     border-bottom: 3px solid $highlight;
+  }
+  p.checkbox {
+    cursor: pointer;
   }
   input {
     clear: both;
