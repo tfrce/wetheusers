@@ -121,7 +121,7 @@ h1 {
 main {
   font-family: $petition-text;
   @include column(8);
-  @include box-shadow(0 5px 10px rgba(0,0,0,0.5));
+  @include box-shadow(0 5px 10px rgba(0,0,0,0.3));
   position: relative;
   z-index: 2;
   background: #ebeef0;
