@@ -29,7 +29,11 @@
           Take a stand for Net Neutrality
        </h1>        
        
-       <a class="add-name" href="#add-name" title="Add your name to this petition!">Sign this petition</a>
+       <a class="add-name" href="#add-name" title="Add your name to this petition!">
+         Sign this petition
+         
+         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="18" height="18" viewBox="3 3 18 18" enable-background="new 3 2.997 18.002 18.003" xml:space="preserve"><path d="M3 17.3V21h3.8L17.8 9.9l-3.7-3.7L3 17.3zM20.7 7c0.4-0.4 0.4-1 0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4 0l-1.8 1.8 3.8 3.8L20.7 7z"/></svg>         
+         </a>
       </header>
           
       <main>
@@ -53,7 +57,7 @@
 
           <p>Anything less than full Title II reclassification – combined, as it must be, with forbearance from regulation beyond specific and narrow “rules of the road” – will be confusing and risky at best. We need clear rules that will survive a legal challenge.</p>
         </article>
-        <!-- <a id="expand" href="#">Read full text &rarr;</a> -->
+        <a id="expand" href="#">Read full text &rarr;</a>
       </main>
       
       <aside>
@@ -63,8 +67,12 @@
             Signatures in 0 days</h2>
           <div id="signature-count"><span style="width: 60%;"></span></div>
           <hr />
-          <p>We need <em>100,000</em> signatures in 30 days for the White House to respond.</p>
-          <p>We need <em>370,000</em> signatures in 30 days to make this the most popular WhiteHouse.gov petition ever.</p>
+          
+          <div id="we-need">
+            <h3>We need</h3>
+            <p><em>100,000</em> for the White House to respond.</p>
+            <p><em>370,000</em> to make this the most popular WhiteHouse.gov petition ever.</p>
+          </div>
         </div>
         <div id="add-name" class="padding">
           <h2>Add your name</h2>
@@ -72,17 +80,17 @@
           <form class="petition-form" method="post" action="">
             <p>
               <label for="first-name">First name</label>
-              <input type="text" required name="firstName" id="first-name" value="" />
+              <input type="text" required name="firstName" id="first-name" placeholder="Susan" value="" />
             </p>
             
             <p>
               <label for="last-name">Last name</label>
-              <input type="text" required name="lastName" id="last-name" value="" />
+              <input type="text" required name="lastName" id="last-name" placeholder="Bloggs" value="" />
             </p>
             
             <p>
               <label for="your-email">Your email</label>
-              <input type="email" required name="email" id="your-email" value="" />
+              <input type="email" required name="email" id="your-email" placeholder="susan@example.com" value="" />
             </p>
             
             <p class="checkbox">
