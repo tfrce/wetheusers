@@ -15,7 +15,7 @@ br.clear {
 
 html {
   background: $background;
-  @include background-image( linear-gradient(to right, #1f4869 0%, #1e2a3a 100%) );
+  @include background-image( linear-gradient(to right, #E3F8FF 0%, #F9FDFF 100%) );
   color: #FFF;
   font-family: $body-text;
   
@@ -58,13 +58,22 @@ header {
   text-align: center;
   @include padding-leader(2);
   @include padding-trailer(1);
-  color: #FFF;
+  color: darken($background, 70%);
+}
+
+.intro-text {
+    @include adjust-font-size-to(20px);
+    line-height: 1.7em;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
 }
 
 #signatures {
   #signature-count {
     border-radius: 3em;
-    background: darken($background, 10%);
+    background: darken($background, 70%);
     height: 0.8em;
     margin: 0 auto;
     width: 90%;
@@ -81,10 +90,10 @@ header {
     }
   }
   p {
-    color: lighten($background, 50%);
+    color: darken($background, 50%);
     @include adjust-font-size-to(16px);
     em {
-      color: lighten($background, 70%);
+      color: darken($background, 80%);
       @include adjust-font-size-to(22px);
       padding-right: 0.1em;
     }
@@ -97,9 +106,10 @@ h1 {
   @include margin-trailer(0.2);
   @include adjust-font-size-to(64px);
   line-height: 1em;
+  color: darken($blue, 7%);
   span {
     @include adjust-font-size-to(14px);
-    color: lighten($background, 50%);
+    color: darken($background, 70%);
     line-height: 1.1em;
     display: block;
   }
@@ -203,7 +213,7 @@ form {
     background: transparent;
     color: #FFF;
     border: none;
-    border-bottom: 3px solid lighten(#20222c, 10%);
+    border-bottom: 3px solid #fff;
     @include padding-trailer(0.25);
     width: 100%;
     @include transition(all 0.5s $cubicBezier);
@@ -342,12 +352,16 @@ footer {
   }
 }
 
-h1, #signatures, main, aside {
+h1, .intro-text, #signatures, main, aside {
   @include animation(flyUp 1s 0.1s cubic-bezier(0.580, 0.000, 0.000, 1.000));
   @include animation-fill-mode(both);
 }
+.header
 #signatures {
   @include animation-delay(0.2s);
+}
+.intro-text {
+  @include animation-delay(0.1s);
 }
 main, aside {
   @include animation-delay(0.3s);
