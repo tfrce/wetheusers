@@ -1,8 +1,9 @@
 $cubicBezier: cubic-bezier(0.590, 0.005, 0.000, 1.000);
 
 $background: #fff;
-$highlight: #209f95;
+$highlight: #6ee5bd;
 $blue: #22738D;
+$orange: #ff720e;
 
 $body-text: "source-sans-pro", "Source Sans Pro", Helvetica, Arial, sans-serif;
 $petition-text: "droid-serif", "Droid Serif", Cambria, Georgia, Times, serif;
@@ -13,4 +14,4 @@ $base-line-height: 30px;
 $relative-font-sizing: true;
 @include establish-baseline;
 
-$max-width: 900px;
+$max-width: 1100px;

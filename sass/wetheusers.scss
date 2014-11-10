@@ -22,7 +22,7 @@ html {
 }
 
 body {
-    background: url(img/bg-obama.png) no-repeat left top;
+    background: url(img/bg-obama.png) no-repeat 2em top;
 }
 
 div.container {
@@ -56,8 +56,6 @@ h1, h2, h3, h4, h5 {
 
 header {
   text-align: center;
-  @include padding-leader(0.6);
-  @include padding-trailer(1);
   color: darken($background, 70%);
 }
 
@@ -70,44 +68,30 @@ header {
     text-align: left;
 }
 
-#signatures {
-  #signature-count {
-    border-radius: 3em;
-    background: darken($background, 70%);
-    height: 0.8em;
-    margin: 0 auto;
-    width: 90%;
-    padding: 0.2em;
-    max-width: 480px;
-    border: 1px solid lighten($background, 10%);
-    @include margin-trailer(0.2);
-    span {
-      display: block;
-      background: $highlight;
-      border-radius: 3em;
-      height: 100%;
-      @include animation(pulse 1.5s 0s ease-in-out infinite alternate);
-    }
-  }
-  p {
-    color: darken($background, 50%);
-    @include adjust-font-size-to(16px);
-    em {
-      color: darken($background, 80%);
-      @include adjust-font-size-to(22px);
-      padding-right: 0.1em;
-    }
-  }
+a.add-name {
+  background: $orange;
+  color: #FFF;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.5em 2em;
+  border-radius: 2em;
+  display: inline-block;
+  position: relative;
+  z-index: 5;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  bottom: -1.25em;
 }
+
 
 h1 {
   font-family: $heading;
   @include padding-leader(0.3);
   font-weight: normal;
-  @include margin-trailer(0.2);
   @include adjust-font-size-to(64px);
   line-height: 1em;
   color: darken($blue, 7%);
+  @include padding-leader(0.6);
+  
   span {
     @include adjust-font-size-to(14px);
     color: darken($background, 70%);
@@ -119,12 +103,11 @@ h1 {
 /* Body */
 
 main {
-  font-family: $petition-text;
   @include column(8);
-  @include box-shadow(0 5px 10px rgba(0,0,0,0.3));
+  @include box-shadow(0 3px 5px rgba(0,0,0,0.1));
   position: relative;
   z-index: 2;
-  background: #ebeef0;
+  background: #FFF;
   overflow: hidden;
   color: #333;
   border-radius: 4px;
@@ -135,6 +118,25 @@ main {
     padding: 0 3em;
     padding-bottom: 0;
   }
+  h2 {
+    @include adjust-font-size-to(32px);
+    @include margin-trailer(0.5);
+  }
+}
+
+main article {
+  font-family: $petition-text;
+  margin: 0 2em;
+  padding: 4em;
+  background: #fdfdf8;
+  @include background-image(linear-gradient(to bottom, #fdfdf8 0%,#f7f7ea 22%,#f7f7eb 33%,#fdfdf8 33.5%,#f7f7ea 60%,#f7f7eb 66%,#fdfdf8 66.5%,#f7f7ea 92%,#f0f0e3 100%));
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+  color: darken(#fdfdf8, 80%);
+  @include margin-leader(1.5);
+  @include margin-trailer(1);
+  @include padding-leader(3);
+  @include padding-trailer(3);
+  
 }
 
 #expand {
@@ -170,7 +172,9 @@ aside {
   margin-right: -3px;
   border: none;
   border-radius: 0px;
+  border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  overflow: hidden;
   h2 {
     color: #FFF;
   }
@@ -187,6 +191,61 @@ aside {
     color: lighten(#20222c, 40%);
     text-align: center;
   }
+}
+
+#signatures {
+  padding: 0 2em;
+  @include padding-leader(1);
+  @include padding-trailer(1);
+  h2 {
+    @include adjust-font-size-to(32px);
+    @include margin-trailer(0.3);
+    line-height: 1.1em;
+    color: #20222c;
+    span {
+      display: block;
+      color: #FFF;
+      @include adjust-font-size-to(50px);
+      line-height: 1em;
+    }
+  }
+  background: $highlight;
+  #signature-count {
+    border-radius: 3em;
+    background: darken($highlight, 70%);
+    height: 0.8em;
+    margin: 0 auto;
+    padding: 0.2em;
+    @include margin-trailer(1);
+    span {
+      display: block;
+      background: $orange;
+      border-radius: 3em;
+      height: 100%;
+      @include animation(pulse 1.5s 0s ease-in-out infinite alternate);
+    }
+  }
+  p {
+    color: darken($highlight, 40%);
+    @include adjust-font-size-to(15px);
+    line-height: 1.3em;
+    @include margin-trailer(0.5);
+    em {
+      color: darken($background, 80%);
+      @include adjust-font-size-to(22px);
+      padding-right: 0.1em;
+    }
+  }
+  hr {
+    border: none;
+    border-top: 3px solid rgba(255, 255, 255, 0.5);
+    display: block;
+    width: 20%;
+    text-align: left;
+    margin: 0;
+    @include margin-trailer(1);
+  }
+  
 }
 
 form {
@@ -232,7 +291,7 @@ form {
     background: $highlight;
     border: none;
     @include transform(none);
-    color: #FFF;
+    color: #20222c;
     font-weight: bold;
     text-transform: uppercase;
     padding: 0.5em 0;
@@ -386,7 +445,7 @@ div#modal figure .spinner {
     opacity: 1;
   }
   100% {
-    opacity: 0.7;
+    opacity: 0.8;
   }
 }
 
