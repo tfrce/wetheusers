@@ -240,7 +240,6 @@ aside {
         position: absolute;
         top: 0;
         left: -100%;
-        @include animation(pulse 2s 0s ease-in-out infinite);
         @include background-image(linear-gradient(to right, $orange 0%, lighten($orange, 25%) 50%, $orange 100%));
       }
     }
