@@ -15,7 +15,7 @@ br.clear {
 
 html {
   background: $background;
-  @include background-image( linear-gradient(to right, #E3F8FF 0%, #F9FDFF 100%) );
+  @include background-image( linear-gradient(to right, #000 0%, #000 100%) );
   color: #FFF;
   font-family: $body-text;
   
@@ -97,7 +97,7 @@ h1 {
   @include adjust-font-size-to(64px);
   line-height: 1em;
   @include padding-leader(0.6);
-  color: darken($background, 70%);
+  color: #7bc5db;
 
   span {
     @include adjust-font-size-to(14px);
@@ -297,7 +297,7 @@ form {
   }
   input {
     clear: both;
-    background: transparent;
+    background-color: white;
     color: #FFF;
     border: none;
     border-bottom: 3px solid #fff;
@@ -317,7 +317,7 @@ form {
   input {
     border-radius: 2px;
     border: none;
-    background: lighten($background,4%);
+    background: white;
     padding: 5%;
     display: block;
     width: 90%;
