@@ -3,7 +3,7 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
-@import "includes", "variables";
+@import "includes", "variables", "share", "animations";
 br.clear {
   clear: both;
   overflow: hidden;
@@ -53,6 +53,14 @@ h1, h2, h3, h4, h5 {
 }
 
 /* Heading */
+
+  .share {
+    margin-top: 2em;
+  }
+  .share button {
+    margin-bottom: 10px;
+    display:block;
+  }
 
 header {
   text-align: center;

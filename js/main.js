@@ -55,6 +55,18 @@ $(document).ready(function () {
   setupOrgRotation();
 
 
+  // Get the share counts
+	var shareUrl = 'https://savecrypto.org' || window.location.href;
+	$.ajax('https://act.eff.org/tools/social_buttons_count/?networks=facebook,twitter,googleplus&url=' + shareUrl, { success: function(res, err) {
+	$.each(res, function(network, value) {
+		var count = value;
+		if (count / 10000 > 1) {
+			count = Math.ceil(count / 1000) + 'k';
+		}
+		$('[data-network="' + network + '"]').attr('count', count);
+	});
+}
+	});
 
   // ------------ Events ------------- //
   // --------------------------------- //
@@ -118,26 +130,36 @@ $(document).ready(function () {
 var setupOrgRotation = function () {
   var referalMap = {
     'fftf': {
-        name: 'Fight for the Future',
-        policy: 'http://www.fightforthefuture.org/privacy/'
+        name: 'Access',
+        policy: 'https://www.accessnow.org/'
     },
     'eff': {
         name: 'Electronic Frontier Foundation',
         policy: 'https://www.eff.org/policy'
-    },
-    'dp': {
-        name: 'Demand Progress',
-        policy: 'http://www.demandprogress.org/privacy/'
-    },
-    'fp': {
-        name: 'Free Press',
-        policy: 'http://www.freepress.net/privacy-copyright'
     }
   };
   var referalKeys = Object.keys(referalMap);
   var referalParam = getParameterByName('r');
   var referalOrg;
   var slug;
+
+  // Share button popups
+  $(".fblinkthis" ).click(function() {
+	  var url = $(this).attr("href");
+	  window.open(url, "Share on Facebook", "width=650,height=500");
+	  return false;
+  });
+  $( ".twlinkthis" ).click(function() {
+	  var url = $(this).attr("href");
+	  window.open(url,"Twitter","width=550,height=420");
+	  return false;
+  });
+  $( ".gpluslinkthis" ).click(function() {
+	  var url = $(this).attr("href");
+	  window.open(url,"Share on Google Plus","width=500,height=436");
+	  return false;
+  });
+
 
   // Allows a page to have a selected org always
   if(typeof alwaysSelected !== 'undefined') {
