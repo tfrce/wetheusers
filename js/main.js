@@ -138,13 +138,17 @@ $(function() {
 });
 var setupOrgRotation = function () {
   var referalMap = {
-    'fftf': {
+    'access': {
         name: 'Access',
-        policy: 'https://www.accessnow.org/'
+        policy: 'https://www.accessnow.org/pages/privacy-policy'
     },
     'eff': {
         name: 'Electronic Frontier Foundation',
         policy: 'https://www.eff.org/policy'
+    },
+    'fftf': {
+        name: 'Fight for the Future',
+        policy: 'https://www.fightforthefuture.org/privacy/'
     }
   };
   var referalKeys = Object.keys(referalMap);
