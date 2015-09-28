@@ -444,8 +444,11 @@ footer {
   @include padding-trailer(2);
   min-height: 1px;
   clear: both;
-  img {
-    display: block;
+  text-align: center;
+  .logos {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
