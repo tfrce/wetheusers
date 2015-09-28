@@ -11,20 +11,28 @@
         width:54px;
         height:54px;
         z-index: 0;
-        margin-top: 40px;
+        margin-top: 35px;
 }
 .floating-share {
-    position: absolute;
-    left: 20px;
-    top: 324px;
-    width: 100px;
-    height: 100px;
+		position: absolute;
+		left: 20px;
+		top: 324px;
+		width: 100px;
+		height: 100px;
+		line-height: 1em;
    
-    .share-buttons a {
+.share-buttons a {
         @extend .animated;
         animation-name: fadeInRight;
-    }
-
+        box-shadow: none;
+		color: #47657c;
+		margin-bottom: 1.5em;
+}
+    
+.share-buttons a:hover {
+		text-decoration: none;
+		opacity: 0.8;	
+}
     @for $i from 1 to 4 {
       .share-buttons a:nth-child(#{$i}) { animation-delay: $i * 0.3s + 3s; }
     }
@@ -45,8 +53,8 @@
         width:54px;
         height:54px;
         background-color:black;
-        background-image: url("/styles/img/social-icons.png");
 }
+
 .share-buttons .sicon {
         margin-top: 2px;
 }
@@ -111,6 +119,10 @@
 }
 
 div.floating-share.fixed {
-  position: fixed;
-  top: 20px;
+		position: fixed;
+		top: 20px;
+}
+
+.fa-facebook, .fa-google-plus {
+		margin-top: 8px;
 }
