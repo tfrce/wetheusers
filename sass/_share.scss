@@ -14,12 +14,12 @@
         margin-top: 40px;
 }
 .floating-share {
-    position: fixed;
-    top: 20px;
+    position: absolute;
     left: 20px;
+    top: 324px;
     width: 100px;
     height: 100px;
-    
+   
     .share-buttons a {
         @extend .animated;
         animation-name: fadeInRight;
@@ -108,4 +108,9 @@
         display: block;
         left: 22px;
         position: absolute;
+}
+
+div.floating-share.fixed {
+  position: fixed;
+  top: 20px;
 }

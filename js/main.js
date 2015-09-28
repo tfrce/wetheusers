@@ -179,3 +179,14 @@ var setupOrgRotation = function () {
   $('.org-privacy-link').attr('href', referalMap[slug].policy);
   $('.org-slug').val(slug);
 }
+  //  Scroll-to-fix share buttons
+
+var floatingShareTop = $('.floating-share').offset().top - 20;
+$(window).scroll(function() {
+    var currentScroll = $(window).scrollTop();
+    if (currentScroll >= floatingShareTop) {
+        $('.floating-share').addClass('fixed');
+    } else {
+        $('.floating-share').removeClass('fixed');
+    }
+});
