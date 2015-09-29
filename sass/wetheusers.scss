@@ -1,7 +1,7 @@
 /* Welcome to Compass.
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />  */
 
 @import "includes", "variables", "share", "animations";
 br.clear {
@@ -10,7 +10,7 @@ br.clear {
   display: block;
   height: 1px;
   margin-bottom: -1px;
-  width: 100%;
+  width: 100%; 
 }
 
 html {
@@ -97,6 +97,9 @@ a.add-name {
   }
 }
 
+h2 {
+  color: #FFF;
+}
 
 h1 {
   font-family: $heading;

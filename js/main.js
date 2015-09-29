@@ -53,7 +53,7 @@ $(document).ready(function () {
 
   // Enable orgs a random chance at getting mailing list signups
   setupOrgRotation();
-
+  document.getElementById('no-script').style.display='none';
   // Update the signature count.
   var updateSignatureCount = function() {
     $.ajax('/wtp/v1/petitions/' + $('input[name="petitionId"]').val() + '.json', {
