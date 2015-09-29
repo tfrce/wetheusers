@@ -103,6 +103,34 @@ $(function() {
     var formData = $(ev.currentTarget).serializeObject();
     formData.subscribeToEmails = true;
     $('#modal').fadeIn();
+
+    // Submit list signups.
+    if (formData['sign-up'] == 'access') {
+      $.post('https://www.accessnow.org/page/s/signup', {
+        email: formData.email,
+        firstname: formData.firstName,
+        lastname: formData.lastName
+      });
+    }
+    else if (formData['sign-up'] == 'eff') {
+      $.post('https://supporters.eff.org/', {
+        email: formData.email,
+        op: 'Subscribe',
+        form_id: 'eff_supporters_library_subscribe_form'
+      });
+    }
+    else if (formData['sign-up'] == 'fftf') {
+      $.post('https://action.fightforthefuture.org/api/movements/1/salsa', {
+        tag: 'savecrypto',
+        'member[language]': 'en',
+        salsa: 'true',
+        language_id: 'en',
+        'member[movement_id]': '1',
+        action: '1',
+        'member[email]': formData.email
+      });
+    }
+
     $.ajax({
       url: API_SERVER + '/1/signatures',
       type: 'POST',
