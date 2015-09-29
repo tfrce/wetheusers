@@ -54,6 +54,18 @@ $(document).ready(function () {
   // Enable orgs a random chance at getting mailing list signups
   setupOrgRotation();
 
+  // Update the signature count.
+  var updateSignatureCount = function() {
+    $.ajax('/wtp/v1/petitions/' + $('input[name="petitionId"]').val() + '.json', {
+      success: function(data) {
+        $('#signatures h2 span').first().html(data.results[0].signatureCount.toLocaleString());
+        $('#signature-count span').animate({ width: (data.results[0].signatureCount / data.results[0].signatureThreshold * 100) + '%'}, 1000);
+        $('#signatures h2 time').html(Math.round(((new Date().getTime() / 1000) - data.results[0].created) / 60 / 60 / 24).toLocaleString());
+        setTimeout(updateSignatureCount, 10000);
+      }
+    });
+  };
+  updateSignatureCount();
 
   // Get the share counts
 	var shareUrl = 'https://savecrypto.org' || window.location.href;
