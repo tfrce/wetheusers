@@ -445,6 +445,12 @@ footer {
   min-height: 1px;
   clear: both;
   text-align: center;
+
+  a,
+  a:hover {
+    box-shadow: none;
+  }
+
   .logos {
     display: inline-block;
     padding-left: 10px;
