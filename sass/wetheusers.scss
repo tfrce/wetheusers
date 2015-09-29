@@ -65,6 +65,9 @@ h1, h2, h3, h4, h5 {
 header {
   text-align: center;
   color: darken($background, 70%);
+  h2 {
+    color: #FFF;
+  }
 }
 
 .intro-text {
@@ -97,19 +100,16 @@ a.add-name {
   }
 }
 
-h2 {
-  color: #FFF;
-}
-
 h1 {
   font-family: $heading;
   @include padding-leader(0.3);
   font-weight: normal;
-  @include adjust-font-size-to(64px);
+  @include adjust-font-size-to(80px);
   line-height: 1em;
   @include padding-leader(0.6);
   color: #7bc5db;
-  margin-bottom: 0.2em;  
+  margin-bottom: 0.2em; 
+  text-shadow: 0px 0px 12px rgba(1, 1, 1, 1); 
 
   span {
     @include adjust-font-size-to(14px);
@@ -129,7 +129,7 @@ main {
   background: #FFF;
   overflow: hidden;
   color: #333;
-  border-radius: 4px;
+
   @include padding-leader(1.5);
   @include padding-trailer(.5);
   @include transition(all 0.5s $cubicBezier);
@@ -192,8 +192,6 @@ aside {
   margin-right: -3px;
   border: none;
   border-radius: 0px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
   overflow: hidden;
   h2 {
     color: #FFF;
@@ -215,6 +213,7 @@ aside {
 
 #signatures {
   padding: 0 2em;
+
   @include padding-leader(1);
   @include padding-trailer(1);
   h2 {
@@ -295,36 +294,6 @@ form {
     @include margin-leader(0.8);
     @include margin-trailer(0.25);
   }
-  /* input[type="email"]:focus + label,
-  input[type="text"]:focus + label {
-    @include transform(scale(0.5));
-  }
-  input[type="email"]:focus,
-  input[type="text"]:focus {
-    border-bottom: 3px solid $highlight;
-  }
-  p.checkbox {
-    cursor: pointer;
-  }
-  input {
-    clear: both;
-    background-color: white;
-    color: #FFF;
-    border: none;
-    border-bottom: 3px solid #fff;
-    @include padding-trailer(0.25);
-    width: 100%;
-    @include transition(all 0.5s $cubicBezier);
-    @include margin-leader(0.25);
-    @include margin-trailer(0.25);
-    
-  }
-  input[value=""] {
-      @include transform(translate3d(0, -1.5em, 0));
-  }
-  input.filled, input:focus {
-    @include transform(translate3d(0, 0, 0));
-  } */
   input {
     border-radius: 2px;
     border: none;
