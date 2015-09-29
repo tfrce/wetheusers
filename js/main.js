@@ -1,7 +1,7 @@
 // -------------- Config ------------ //
 // --------------------------------- //
 
-var API_SERVER = 'https://standupforthenet.herokuapp.com';
+var API_SERVER = 'https://savecrytpo.org/api';
 var POLL_VALIDATION_TIME = 5000; // Polls to check if user validated in ms
 
 // -------------- Utils ------------ //
@@ -104,7 +104,7 @@ $(function() {
     formData.subscribeToEmails = true;
     $('#modal').fadeIn();
     $.ajax({
-      url: API_SERVER + '/api/1/signatures',
+      url: API_SERVER + '/1/signatures',
       type: 'POST',
       crossDomain: true,
       data: JSON.stringify(formData),
