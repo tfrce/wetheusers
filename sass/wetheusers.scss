@@ -106,6 +106,7 @@ h1 {
   line-height: 1em;
   @include padding-leader(0.6);
   color: #7bc5db;
+  margin-bottom: 0.2em;  
 
   span {
     @include adjust-font-size-to(14px);
@@ -516,6 +517,7 @@ div#modal figure .spinner {
   body {
     padding: 0;
     background-size: 80% auto;
+    background: url(img/bg-mobile.jpg) no-repeat 0 top;
   }
   header {
     @include padding-leader(2);
