@@ -144,30 +144,17 @@ $(function() {
     }
 
     $.post(API_SERVER + '/1/signatures',
-      formData,
-      function (res){
-        console.log(res);
-      }
+      formData
     );
 
     var validated = false;
     var checkValidation = function () {
-      console.log('Checking Validation', validated);
       if(Math.ceil(Math.random()*3) % 2 === 0) {
-        console.log('Complete');
       } else {
         setTimeout(checkValidation, POLL_VALIDATION_TIME);
       }
     }
     setTimeout(checkValidation, POLL_VALIDATION_TIME);
-    /*
-      {
-        "email": "thomasalwyndavis@gmail.cmo",
-        "firstName": "John",
-        "lastName": "Doe",
-        "subscribeToEmails": true
-      }
-    */
     return false;
   })
 
@@ -223,7 +210,6 @@ var setupOrgRotation = function () {
     referalOrg = referalMap[referalKeys[randomOrgIndex]];
     slug = referalKeys[randomOrgIndex];
   }
-  console.log(referalMap[slug]);
   $('.org-name').text(referalMap[slug].name);
   $('.org-privacy-link').attr('href', referalMap[slug].policy);
   $('.org-slug').val(slug);
