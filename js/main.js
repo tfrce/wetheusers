@@ -1,7 +1,7 @@
 // -------------- Config ------------ //
 // --------------------------------- //
 
-var API_SERVER = 'https://savecrytpo.org/api';
+var API_SERVER = 'https://' + document.location.host + '/api';
 var POLL_VALIDATION_TIME = 5000; // Polls to check if user validated in ms
 
 // -------------- Utils ------------ //
@@ -131,16 +131,12 @@ $(function() {
       });
     }
 
-    $.ajax({
-      url: API_SERVER + '/1/signatures',
-      type: 'POST',
-      crossDomain: true,
-      data: JSON.stringify(formData),
-      dataType: 'json',
-      success: function (){
-        console.log(arguments);
+    $.post(API_SERVER + '/1/signatures',
+      formData,
+      function (res){
+        console.log(res);
       }
-    });
+    );
 
     var validated = false;
     var checkValidation = function () {
