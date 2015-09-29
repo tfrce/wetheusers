@@ -150,6 +150,7 @@ $(function() {
       });
     }
 
+    delete formData['sign-up'];
     $.post(API_SERVER + '/1/signatures',
       formData
     );
