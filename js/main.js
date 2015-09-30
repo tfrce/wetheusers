@@ -166,6 +166,10 @@ $(function() {
     return false;
   })
 
+  $('#modal').click(function(){
+      $('#modal').hide();
+  });
+
 });
 var setupOrgRotation = function () {
   var referalMap = {

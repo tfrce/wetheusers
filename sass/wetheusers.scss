@@ -104,7 +104,7 @@ h1 {
   font-family: $heading;
   @include padding-leader(0.3);
   font-weight: normal;
-  @include adjust-font-size-to(80px);
+  @include adjust-font-size-to(70px);
   line-height: 1em;
   @include padding-leader(0.6);
   color: #7bc5db;
@@ -112,7 +112,7 @@ h1 {
   text-shadow: 0px 0px 12px rgba(1, 1, 1, 1); 
 
   span {
-    @include adjust-font-size-to(14px);
+    @include adjust-font-size-to(16px);
     color: lighten($blue, 8%);
     line-height: 1.1em;
     display: block;
@@ -148,7 +148,6 @@ main article {
   margin: 0 2em;
   padding: 2em;
   background: #fdfdf8;
-  @include background-image(linear-gradient(to bottom, #fdfdf8 0%,#f7f7ea 22%,#f7f7eb 33%,#fdfdf8 33.5%,#f7f7ea 60%,#f7f7eb 66%,#fdfdf8 66.5%,#f7f7ea 92%,#f0f0e3 100%));
   box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
   color: darken(#fdfdf8, 80%);
   @include margin-leader(1.5);
@@ -563,3 +562,19 @@ div#modal figure .spinner {
   }
   
 }
+
+@font-face {
+  font-family: bebas-neue;
+  src: url("fonts/BebasNeue-webfont.woff");
+}
+
+@font-face {
+  font-family: source-sans-pro;
+  src: url("fonts/SourceSansPro-Regular.ttf.woff2");
+}
+
+@font-face {
+  font-family: droid-serif;
+  src: url("fonts/DroidSerif-Regular-webfont.woff");
+}
+
