@@ -7,44 +7,46 @@ var POLL_VALIDATION_TIME = 5000; // Polls to check if user validated in ms
 // -------------- Utils ------------ //
 // --------------------------------- //
 function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&\/#]*)"),
-        results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&\/#]*)"),
+  results = regex.exec(location.search);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 // ie shims
 if (!Object.keys) {
-    Object.keys = function(o) {
-        if (o !== Object(o))
-            throw new TypeError('Object.keys called on a non-object');
-        var k = [],
-            p;
-        for (p in o)
-            if (Object.prototype.hasOwnProperty.call(o, p)) k.push(p);
-        return k;
+  Object.keys = function(o) {
+    if (o !== Object(o)) {
+      throw new TypeError('Object.keys called on a non-object');
     }
+    var k = [], p;
+    for (p in o) {
+      if (Object.prototype.hasOwnProperty.call(o, p)) {
+        k.push(p);
+      }
+    }
+    return k;
+  }
 }
+
 $.fn.serializeObject = function() {
- var o = {};
- var a = this.serializeArray();
- $.each(a, function() {
-     if (o[this.name]) {
-         if (!o[this.name].push) {
-             o[this.name] = [o[this.name]];
-         }
-         o[this.name].push(this.value || '');
-     } else {
-         o[this.name] = this.value || '';
-     }
- });
- return o;
+  var o = {};
+  var a = this.serializeArray();
+  $.each(a, function() {
+    if (o[this.name]) {
+      if (!o[this.name].push) {
+        o[this.name] = [o[this.name]];
+      }
+      o[this.name].push(this.value || '');
+    }
+    else {
+      o[this.name] = this.value || '';
+    }
+  });
+  return o;
 };
 
 $(document).ready(function () {
-
-
-
   // ------------ Setup -------------- //
   // --------------------------------- //
 
@@ -53,7 +55,8 @@ $(document).ready(function () {
 
   // Enable orgs a random chance at getting mailing list signups
   setupOrgRotation();
-  document.getElementById('no-script').style.display='none';
+  document.getElementById('no-script').style.display = 'none';
+
   // Update the signature count.
   var updateSignatureCount = function() {
     $.ajax('/wtp/v1/petitions/' + $('input[name="petitionId"]').val() + '.json', {
@@ -75,39 +78,41 @@ $(document).ready(function () {
   updateSignatureCount();
 
   // Get the share counts
-	var shareUrl = 'https://savecrypto.org' || window.location.href;
-	$.ajax('https://act.eff.org/tools/social_buttons_count/?networks=facebook,twitter,googleplus&url=' + shareUrl, { success: function(res, err) {
-	$.each(res, function(network, value) {
-		var count = value;
-		if (count / 10000 > 1) {
-			count = Math.ceil(count / 1000) + 'k';
-		}
-		$('[data-network="' + network + '"]').attr('count', count);
-	});
-}
-	});
+  var shareUrl = 'https://savecrypto.org' || window.location.href;
+  $.ajax('https://act.eff.org/tools/social_buttons_count/?networks=facebook,twitter,googleplus&url=' + shareUrl, {
+    success: function(res, err) {
+      $.each(res, function(network, value) {
+        var count = value;
+        if (count / 10000 > 1) {
+          count = Math.ceil(count / 1000) + 'k';
+        }
+        $('[data-network="' + network + '"]').attr('count', count);
+      });
+    }
+  });
 
   // ------------ Events ------------- //
   // --------------------------------- //
 
-// page-scrolling
-$(function() {
+  // page-scrolling
+  $(function() {
     $('a.page-scroll').bind('click', function(event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top
-        }, 1000, 'easeInOutExpo');
-        event.preventDefault();
+      var $anchor = $(this);
+      $('html, body').stop().animate({
+        scrollTop: $($anchor.attr('href')).offset().top
+      }, 1000, 'easeInOutExpo');
+      event.preventDefault();
     });
-});
+  });
 
   // Input animation
   $('form input[type="text"], form input[type="email"]').blur(function () {
-    if( $(this).val() ) {
-        $(this).addClass('filled');
-      } else {
-        $(this).removeClass();
-      }
+    if ($(this).val()) {
+      $(this).addClass('filled');
+    }
+    else {
+      $(this).removeClass();
+    }
   });
 
   // Expand the text button for mobile
@@ -115,7 +120,6 @@ $(function() {
     $('main').addClass('expanded');
     return false;
   });
-  
 
   // On form submissions
   $('.petition-form').on('submit', function (ev) {
@@ -149,6 +153,29 @@ $(function() {
         'member[email]': formData.email
       });
     }
+    else if (formData['sign-up'] == 'openmedia') {
+      $.post('https://openmedia.org/stay-informed', {
+        'submitted[first_name]': formData.firstName,
+        'submitted[last_name]': formData.lastName,
+        'submitted[email]': formData.email,
+        'submitted[country]': 'US',
+        'form_id': 'webform_client_form_122',
+        'op': 'Sign Up'
+      });
+    }
+    else if (formData['sign-up'] == 'sumofus') {
+      $.post('http://act.sumofus.org/act/', {
+        'email': formData.email,
+        'country': 'United States',
+        'page': 'registration',
+        'lists': '1',
+        'lang': 'en',
+        'source': 'savecrypto',
+        'action_source': 'savecrypto',
+        'action_referer': 'savecrypto',
+        'form_name': 'act'
+      });
+    }
 
     delete formData['sign-up'];
     $.post(API_SERVER + '/1/signatures',
@@ -157,33 +184,42 @@ $(function() {
 
     var validated = false;
     var checkValidation = function () {
-      if(Math.ceil(Math.random()*3) % 2 === 0) {
-      } else {
+      if (Math.ceil(Math.random()*3) % 2 === 0) {
+      }
+      else {
         setTimeout(checkValidation, POLL_VALIDATION_TIME);
       }
     }
     setTimeout(checkValidation, POLL_VALIDATION_TIME);
     return false;
-  })
-
-  $('#modal').click(function(){
-      $('#modal').hide();
   });
 
+  $('#modal').click(function(){
+    $('#modal').hide();
+  });
 });
+
 var setupOrgRotation = function () {
   var referalMap = {
     'access': {
-        name: 'Access',
-        policy: 'https://www.accessnow.org/pages/privacy-policy'
+      name: 'Access',
+      policy: 'https://www.accessnow.org/pages/privacy-policy'
     },
     'eff': {
-        name: 'Electronic Frontier Foundation',
-        policy: 'https://www.eff.org/policy'
+      name: 'Electronic Frontier Foundation',
+      policy: 'https://www.eff.org/policy'
     },
     'fftf': {
-        name: 'Fight for the Future',
-        policy: 'https://www.fightforthefuture.org/privacy/'
+      name: 'Fight for the Future',
+      policy: 'https://www.fightforthefuture.org/privacy/'
+    },
+    'openmedia': {
+      name: 'OpenMedia',
+      policy: 'https://openmedia.ca/privacy'
+    },
+    'sumofus': {
+      name: 'SumOfUs',
+      policy: 'https://sumofus.org/privacy/'
     }
   };
   var referalKeys = Object.keys(referalMap);
@@ -193,31 +229,31 @@ var setupOrgRotation = function () {
 
   // Share button popups
   $(".fblinkthis" ).click(function() {
-	  var url = $(this).attr("href");
-	  window.open(url, "Share on Facebook", "width=650,height=500");
-	  return false;
+    var url = $(this).attr("href");
+    window.open(url, "Share on Facebook", "width=650,height=500");
+    return false;
   });
   $( ".twlinkthis" ).click(function() {
-	  var url = $(this).attr("href");
-	  window.open(url,"Twitter","width=550,height=420");
-	  return false;
+    var url = $(this).attr("href");
+    window.open(url,"Twitter","width=550,height=420");
+    return false;
   });
   $( ".gpluslinkthis" ).click(function() {
-	  var url = $(this).attr("href");
-	  window.open(url,"Share on Google Plus","width=500,height=436");
-	  return false;
+    var url = $(this).attr("href");
+    window.open(url,"Share on Google Plus","width=500,height=436");
+    return false;
   });
 
-
   // Allows a page to have a selected org always
-  if(typeof alwaysSelected !== 'undefined') {
-      referalParam = alwaysSelected;
+  if (typeof alwaysSelected !== 'undefined') {
+    referalParam = alwaysSelected;
   }
 
   if (referalParam in referalMap) {
     referalOrg = referalMap[referalParam];
     slug = referalParam;
-  } else {
+  }
+  else {
     var randomOrgIndex = Math.floor(Math.random() * referalKeys.length);
     referalOrg = referalMap[referalKeys[randomOrgIndex]];
     slug = referalKeys[randomOrgIndex];
@@ -226,14 +262,16 @@ var setupOrgRotation = function () {
   $('.org-privacy-link').attr('href', referalMap[slug].policy);
   $('.org-slug').val(slug);
 }
-  //  Scroll-to-fix share buttons
 
+//  Scroll-to-fix share buttons
 var floatingShareTop = $('.floating-share').offset().top - 20;
+
 $(window).scroll(function() {
-    var currentScroll = $(window).scrollTop();
-    if (currentScroll >= floatingShareTop) {
-        $('.floating-share').addClass('fixed');
-    } else {
-        $('.floating-share').removeClass('fixed');
-    }
+  var currentScroll = $(window).scrollTop();
+  if (currentScroll >= floatingShareTop) {
+    $('.floating-share').addClass('fixed');
+  }
+  else {
+    $('.floating-share').removeClass('fixed');
+  }
 });
