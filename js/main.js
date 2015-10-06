@@ -163,6 +163,19 @@ $(document).ready(function () {
         'op': 'Sign Up'
       });
     }
+    else if (formData['sign-up'] == 'sumofus') {
+      $.post('http://act.sumofus.org/act/', {
+        'email': formData.email,
+        'country': 'United States',
+        'page': 'registration',
+        'lists': '1',
+        'lang': 'en',
+        'source': 'savecrypto',
+        'action_source': 'savecrypto',
+        'action_referer': 'savecrypto',
+        'form_name': 'act'
+      });
+    }
 
     delete formData['sign-up'];
     $.post(API_SERVER + '/1/signatures',
@@ -203,6 +216,10 @@ var setupOrgRotation = function () {
     'openmedia': {
       name: 'OpenMedia',
       policy: 'https://openmedia.ca/privacy'
+    },
+    'sumofus': {
+      name: 'SumOfUs',
+      policy: 'https://sumofus.org/privacy/'
     }
   };
   var referalKeys = Object.keys(referalMap);
