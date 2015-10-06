@@ -149,6 +149,16 @@ $(function() {
         'member[email]': formData.email
       });
     }
+    else if (formData['sign-up'] == 'openmedia') {
+      $.post('https://openmedia.org/stay-informed', {
+        'submitted[first_name]': formData.firstName,
+        'submitted[last_name]': formData.lastName,
+        'submitted[email]': formData.email,
+        'submitted[country]': 'US',
+        'form_id': 'webform_client_form_122',
+        'op': 'Sign Up'
+      });
+    }
 
     delete formData['sign-up'];
     $.post(API_SERVER + '/1/signatures',
@@ -184,6 +194,10 @@ var setupOrgRotation = function () {
     'fftf': {
         name: 'Fight for the Future',
         policy: 'https://www.fightforthefuture.org/privacy/'
+    },
+    'openmedia': {
+        name: 'OpenMedia',
+        policy: 'https://openmedia.ca/privacy'
     }
   };
   var referalKeys = Object.keys(referalMap);
