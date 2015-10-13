@@ -154,12 +154,12 @@ $(document).ready(function () {
       });
     }
     else if (formData['sign-up'] == 'openmedia') {
-      $.post('https://openmedia.org/stay-informed', {
+      $.post('https://openmedia.org/save-crypto-form', {
         'submitted[first_name]': formData.firstName,
         'submitted[last_name]': formData.lastName,
         'submitted[email]': formData.email,
         'submitted[country]': 'US',
-        'form_id': 'webform_client_form_122',
+        'form_id': 'webform_client_form_1738',
         'op': 'Sign Up'
       });
     }
