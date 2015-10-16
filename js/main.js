@@ -61,13 +61,8 @@ $(document).ready(function () {
   var updateSignatureCount = function() {
     $.ajax('/wtp/v1/petitions/' + $('input[name="petitionId"]').val() + '.json', {
       success: function(data) {
-        var goal = data.results[0].signatureThreshold;
-        if (data.results[0].signatureCount > goal) {
-          goal = 370000;
-        }
-        var width = Math.min(data.results[0].signatureCount / goal * 100, 100);
         $('#signatures h2 span').html(data.results[0].signatureCount.toLocaleString());
-        $('#signature-count span').animate({ width: (data.results[0].signatureCount / data.results[0].signatureThreshold * 100) + '%'}, 1000);
+        $('#signature-count span').animate({ width: Math.min(data.results[0].signatureCount / data.results[0].signatureThreshold * 100, 100) + '%'}, 1000);
         var days = Math.round(((new Date().getTime() / 1000) - data.results[0].created) / 60 / 60 / 24);
         var time = days.toLocaleString() + ((days == 1) ? ' day' : ' days');
         $('#signatures h2 time').html(time);
