@@ -86,7 +86,7 @@ a.add-name {
   text-transform: uppercase;
   padding: 0.5em 2em;
   border-radius: 2em;
-  display: inline-block;
+  display: none;
   position: relative;
   z-index: 5;
   box-shadow: 0 1px 2px rgba(0,0,0,0.3);
@@ -194,7 +194,6 @@ aside {
   border: none;
   border-radius: 0px;
   overflow: hidden;
-      max-width: 29%;
   h2 {
     color: #FFF;
   }
@@ -214,8 +213,8 @@ aside {
 }
 
 #signatures {
-  padding: 0 2em;
-
+  padding: 0 10%;
+  text-align: center;
   @include padding-leader(1);
   @include padding-trailer(1);
   h2 {
@@ -228,6 +227,12 @@ aside {
       color: #FFF;
       @include adjust-font-size-to(50px);
       line-height: 1em;
+    }
+    a {
+      color: #FFF;
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
   
@@ -272,9 +277,8 @@ aside {
     border: none;
     border-top: 3px solid rgba(255, 255, 255, 0.5);
     display: block;
-    width: 20%;
-    text-align: left;
-    margin: 0;
+    width: 30%;
+    text-align: left; 
     @include margin-trailer(0.6);
   }
   h3 {
@@ -566,6 +570,10 @@ div#modal figure .spinner {
     }
   }
   
+}
+
+#add-name {
+  display: none;
 }
 
 @font-face {

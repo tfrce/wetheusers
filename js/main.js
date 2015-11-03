@@ -1,8 +1,9 @@
 // -------------- Config ------------ //
 // --------------------------------- //
 
-var API_SERVER = 'https://' + document.location.host + '/api';
-var POLL_VALIDATION_TIME = 5000; // Polls to check if user validated in ms
+var API_SERVER = 'https://' + document.location.host + '/api', 
+  POLL_VALIDATION_TIME = 5000, // Polls to check if user validated in ms
+  THRESHOLD_PASSED_TIME = 1445959907; // Time the signature threshold was passed
 
 // -------------- Utils ------------ //
 // --------------------------------- //
@@ -61,11 +62,18 @@ $(document).ready(function () {
   var updateSignatureCount = function() {
     $.ajax('/wtp/v1/petitions/' + $('input[name="petitionId"]').val() + '.json', {
       success: function(data) {
-        $('#signatures h2 span').html(data.results[0].signatureCount.toLocaleString());
-        $('#signature-count span').animate({ width: Math.min(data.results[0].signatureCount / data.results[0].signatureThreshold * 100, 100) + '%'}, 1000);
-        var days = Math.round(((new Date().getTime() / 1000) - data.results[0].created) / 60 / 60 / 24);
-        var time = days.toLocaleString() + ((days == 1) ? ' day' : ' days');
-        $('#signatures h2 time').html(time);
+        $('#count').html(data.results[0].signatureCount.toLocaleString());
+        // Link to a response when one is posted
+        if (data.results[0].status == 'responded') {
+          var responseURL = data.results[0].url;
+          $('#response').html('Read President Obama\'s <span><a href="'+responseURL+'">response</a></span>');
+        } else {
+          var passedDays = Math.round(((new Date().getTime() / 1000) - THRESHOLD_PASSED_TIME) / 60 / 60 / 24);
+          // The form is still active, so display the elements that were hidden on load
+          $("#add-name, .page-scroll").show();
+          sigTime = passedDays.toLocaleString() + ((passedDays == 1) ? ' day' : ' days');
+          $('#signatures h2 span time').html(sigTime);
+        }
         setTimeout(updateSignatureCount, 10000);
       }
     });
