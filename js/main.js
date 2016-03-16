@@ -66,7 +66,9 @@ $(document).ready(function () {
         // Link to a response when one is posted
         if (data.results[0].status == 'responded') {
           var responseURL = data.results[0].url;
-          $('#response').html('Read President Obama\'s <span><a href="'+responseURL+'">response</a></span>');
+          sigTime = passedDays.toLocaleString() + ((passedDays == 1) ? ' day' : ' days');
+          $('#signatures h2 span time').html(sigTime);
+          $('#response').html('<a href="'+responseURL+'">Read the interim response from the Administration.</a>');
         } else {
           var passedDays = Math.round(((new Date().getTime() / 1000) - THRESHOLD_PASSED_TIME) / 60 / 60 / 24);
           // The form is still active, so display the elements that were hidden on load
