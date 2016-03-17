@@ -60,15 +60,16 @@ $(document).ready(function () {
 
   // Update the signature count.
   var updateSignatureCount = function() {
-    $.ajax('/wtp/v1/petitions/' + $('input[name="petitionId"]').val() + '.json', {
+    $.ajax('/v1/petitions/' + $('input[name="petitionId"]').val() + '.json', {
       success: function(data) {
         $('#count').html(data.results[0].signatureCount.toLocaleString());
         // Link to a response when one is posted
         if (data.results[0].status == 'responded') {
+          var passedDays = Math.round(((new Date().getTime() / 1000) - THRESHOLD_PASSED_TIME) / 60 / 60 / 24);
           var responseURL = data.results[0].url;
           sigTime = passedDays.toLocaleString() + ((passedDays == 1) ? ' day' : ' days');
           $('#signatures h2 span time').html(sigTime);
-          $('#response').html('<a href="'+responseURL+'">Read the interim response from the Administration.</a>');
+          $('#response-link').html('<a href="'+responseURL+'">Read the interim response from the Administration.</a>');
         } else {
           var passedDays = Math.round(((new Date().getTime() / 1000) - THRESHOLD_PASSED_TIME) / 60 / 60 / 24);
           // The form is still active, so display the elements that were hidden on load
