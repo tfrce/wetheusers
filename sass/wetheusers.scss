@@ -591,3 +591,25 @@ div#modal figure .spinner {
   src: url("fonts/DroidSerif-Regular-webfont.woff");
 }
 
+/** Additional actions. **/
+.act {
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+iframe {
+  width: 100%;
+}
+
+/** Styles loaded by Action Center embed **/
+.twitter-tool-label {
+  display: none;
+}
+
+#tools .tool {
+  border-color: $highlight;
+}
+
+#tools .tool .tool-heading {
+  color: $highlight;
+}
