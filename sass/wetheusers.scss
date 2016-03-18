@@ -569,11 +569,6 @@ div#modal figure .spinner {
       display: none;
     }
   }
-  
-}
-
-#add-name {
-  display: none;
 }
 
 @font-face {
@@ -612,4 +607,15 @@ iframe {
 
 #tools .tool .tool-heading {
   color: $highlight;
+}
+
+#add-name.padding {
+  padding-bottom: 0;
+}
+
+#add-name iframe {
+  height: 430px;
+  overflow-y: hidden;
+  scrolling: no;
+  seamless: seamless;
 }
