@@ -3,7 +3,7 @@
 
 var API_SERVER = 'https://' + document.location.host + '/api', 
   POLL_VALIDATION_TIME = 5000, // Polls to check if user validated in ms
-  THRESHOLD_PASSED_TIME = 1445853600; // Time the signature threshold was passed
+  THRESHOLD_PASSED_TIME = 1446073200; // Time the signature threshold was passed
 
 // -------------- Utils ------------ //
 // --------------------------------- //
